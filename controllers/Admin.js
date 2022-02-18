@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt')
-const Admin = require('../../LinaelCrea-backend/models/Admin')
+const Admin = require('../models/Admin')
 const jwt = require('jsonwebtoken')
 
 exports.signup = (req, res, next) => {
