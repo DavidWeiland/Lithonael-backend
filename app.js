@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const path = require('path')
 const adminRoutes = require('./routes/Admin')
 const gemRoutes = require('./routes/Gem')
+const itemForSaleRoutes = require('./routes/ItemForSale')
 
 mongoose.connect(process.env.DB_URI, {
   dbName:process.env.DB_NAME,
@@ -30,5 +31,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')))
 
 app.use('/api/admin/auth', adminRoutes)
 app.use('/api/gems', gemRoutes)
+app.use('/api/itemForSale', itemForSaleRoutes)
 
 module.exports = app
