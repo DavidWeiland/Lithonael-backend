@@ -1,2 +1,4 @@
 node_modules
 .env
+*.pages
+User_Stories.pdf
