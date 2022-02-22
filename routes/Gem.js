@@ -7,6 +7,7 @@ const multer = require('../middleware/multer-config')
 
 router.post('/', auth, multer, GemCtrl.createGem)
 router.get('/', GemCtrl.getAllGems)
+router.get('/:id', GemCtrl.getOneGem)
 router.put('/:id', auth, multer, GemCtrl.modifyOneGem)
 router.delete('/:id', auth, GemCtrl.deleteOneGem)
 
