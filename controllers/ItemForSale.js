@@ -3,10 +3,11 @@ const Item = require('../models/ItemForSale')
 
 exports.createItem = (req, res, next) => {
   const itemObject = JSON.parse(req.body.thing)
+  const imagesArray = req.files.map(file=>`${req.protocol}://${req.get('host')}/images/${file.filename}`)
   delete itemObject._id
   const item = new Item({
     ...itemObject,
-    image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    images: imagesArray
   })
   item.save()
     .then(() => res.status(201).json({message : 'New Item For Sale created !' }))
