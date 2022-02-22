@@ -9,7 +9,7 @@ exports.createGem = (req, res, next) => {
     image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   })
   gem.save()
-    .then(() => res.status(201).json({message : 'Gem created !' }))
+    .then(() => res.status(201).json({message : 'New Gem created !' }))
     .catch(error => res.status(400).json({ error }))
 }
 
@@ -22,7 +22,7 @@ exports.getAllGems = (req, res, next) => {
 exports.getOneGem = (req, res, next) => {
   Gem.findOne({ _id: req.params.id })
   .then((gem) => res.status(200).json(gem))
-  .catch(error=> res.status(400).json({error}))
+  .catch(error=> res.status(500).json({error}))
 }
 
 exports.modifyOneGem = (req, res, next) => {
@@ -57,11 +57,11 @@ exports.deleteOneGem = (req, res, next) => {
           error: new Error('Gem not found')
         })
       }
-      if (gem.userId !== req.auth.userId) {
+      /* if (gem.userId !== req.auth.userId) {
         return res.status(401).json({
           error: new Error('request non authorized')
         })
-      }
+      } */
       const filename = gem.image.split('/images/')[1]
       fs.unlink(`images/${filename}`, () => {
         Gem.deleteOne({ _id: req.params.id })
