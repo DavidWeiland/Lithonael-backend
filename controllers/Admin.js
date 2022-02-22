@@ -10,7 +10,7 @@ exports.signup = (req, res, next) => {
         password: hash
       })
       admin.save()
-        .then(() => res.status(201).json({ message: 'Admin added' }))
+        .then(() => res.status(201).json({ message: 'New Admin added' }))
         .catch(error => {
           console.log(error)
           res.status(400).json({ error })
@@ -26,7 +26,7 @@ exports.login = (req, res, next) => {
   Admin.findOne({ identifiant: req.body.identifiant })
     .then(admin => {
       if (!admin) {
-        return res.status(401).json({ error : 'Admin not found' })
+        return res.status(404).json({ error : 'Admin not found' })
       }
       bcrypt.compare(req.body.password, admin.password)
         .then((valid) => {
@@ -51,7 +51,7 @@ exports.modifyAdmin = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
       Admin.updateOne({ _id: req.params.id }, { password:hash , _id: req.params.id })
-      .then(() => res.status(200).json({ message: 'admin modifié' }))
+      .then(() => res.status(200).json({ message: 'Admin modified' }))
       .catch(error => res.status(400).json({ error }))
     })
     .catch(error => {
