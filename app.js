@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
 const adminRoutes = require('./routes/Admin')
+const gemRoutes = require('./routes/Gem')
 
 mongoose.connect(process.env.DB_URI, {
   dbName:process.env.DB_NAME,
@@ -28,5 +29,6 @@ app.use(express.json())
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
 app.use('/api/admin/auth', adminRoutes)
+app.use('/api/gems', gemRoutes)
 
 module.exports = app
