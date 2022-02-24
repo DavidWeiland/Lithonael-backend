@@ -5,10 +5,9 @@ const itemSchema = mongoose.Schema({
   userId:{type:String, required:true},
   name: { type: String, required: true, unique: true },
   description:{type:String, required:true},
-  stone: { type: String, required: true },
-  stoneSizing: { type: String, required: true },
-  othersMaterials: { type: Array, required: false },
-  images:{type:Array, required:true}
+  stones: { type: Array, required: true },
+  virtues: { type: Array, required: true },
+  image:{type:String, required:true}
 })
 
 itemSchema.plugin(uniqueValidator)
