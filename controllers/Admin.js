@@ -35,6 +35,7 @@ exports.login = (req, res, next) => {
           }
           res.status(200).json({
             adminId: admin._id,
+            name : admin.identifiant,
             token: jwt.sign(
               { adminId: admin._id },
               process.env.DECODE_TOKEN_ADMIN,
