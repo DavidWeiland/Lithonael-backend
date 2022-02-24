@@ -28,7 +28,7 @@ exports.getOneGem = (req, res, next) => {
 exports.modifyOneGem = (req, res, next) => {
   if (req.file) {
     const gemObject = {
-      ...JSON.parse(req.body.thing),
+      ...JSON.parse(req.body.gemObject),
       image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     }
     Gem.findOne({ _id: req.params.id })

@@ -28,7 +28,7 @@ exports.getOneItem = (req, res, next) => {
 exports.modifyOneItem = (req, res, next) => {
   if (req.file) {
     const itemObject = {
-      ...JSON.parse(req.body.item),
+      ...JSON.parse(req.body.itemObject),
       image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     }
     Item.findOne({ _id: req.params.id })
