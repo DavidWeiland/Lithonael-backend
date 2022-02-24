@@ -2,7 +2,7 @@ const fs = require('fs')
 const Gem = require('../models/Gem')
 
 exports.createGem = (req, res, next) => {
-  const gemObject = JSON.parse(req.body.thing)
+  const gemObject = JSON.parse(req.body.gemObject)
   delete gemObject._id
   const gem = new Gem({
     ...gemObject,
