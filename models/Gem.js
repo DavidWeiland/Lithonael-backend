@@ -11,10 +11,10 @@ const gemSchema = mongoose.Schema({
   hardnessMax: { type: Number, required: false },
   crystalSystem: { type: String, required: false },
   deposits: { type: Array, required: false },
-  colours: { type: Array, required: false },
+  colours: { type: Array, required: true },
   descriptionVirtues:{type:String, required:false},
-  physicalVirtues: { type: Array, required: false },
-  psychologicalVirtues: { type: Array, required: false },
+  physicalVirtues: { type: Array, required: true },
+  psychologicalVirtues: { type: Array, required: true },
   image:{type:String, required:true}
 })
 
