@@ -9,19 +9,19 @@ exports.createItem = (req, res, next) => {
     image: `${req.protocol}://${req.get('host')}/images/${file.filename}`
   })
   item.save()
-    .then(() => res.status(201).json({message : 'New Item For Sale created !' }))
+    .then(() => res.status(201).json({ message: 'New Item For Sale created !' }))
     .catch(error => res.status(400).json({ error }))
 }
 
 exports.getAllItems = (req, res, next) => {
   Item.find()
-    .then(gems => res.status(200).json(gems))
+    .then(items => res.status(200).json({ itemsList: items }))
     .catch(error => res.status(400).json({ error }))
 }
 
 exports.getOneItem = (req, res, next) => {
   Item.findOne({ _id: req.params.id })
-  .then((gem) => res.status(200).json(gem))
+    .then((item) => res.status(200).json({ item: item }))
   .catch(error=> res.status(500).json({error}))
 }
 
@@ -44,7 +44,7 @@ exports.modifyOneItem = (req, res, next) => {
   } else {
     const itemObject = { ...req.body }
     Item.updateOne({ _id: req.params.id },{...itemObject, _id:req.params.id})
-    .then(() => res.status(200).json({message:'Item modified !'}))
+      .then(() => res.status(200).json({ message: 'Item modified !' }))
     .catch(error=> res.status(400).json({error}))
   }
 }
@@ -65,7 +65,7 @@ exports.deleteOneItem = (req, res, next) => {
       const filename = item.image.split('/images/')[1]
       fs.unlink(`images/${filename}`, () => {
         Item.deleteOne({ _id: req.params.id })
-          .then(() => res.status(200).json({message: 'Item deleted !'}))
+          .then(() => res.status(200).json({ message: 'Item deleted !' }))
           .catch((error) => res.status(400).json({ error }))
       })
     })
