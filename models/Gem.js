@@ -9,7 +9,7 @@ const gemSchema = mongoose.Schema({
   chimicalComposition: { type: Array, required: false },
   hardnessMin: { type: Number, required: false },
   hardnessMax: { type: Number, required: false },
-  crystalSystem: { type: String, required: false },
+  crystalSystem: { type: Array, required: false },
   deposits: { type: Array, required: false },
   colours: { type: Array, required: true },
   descriptionVirtues:{type:String, required:false},
