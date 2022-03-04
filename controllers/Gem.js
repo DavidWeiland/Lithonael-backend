@@ -15,13 +15,13 @@ exports.createGem = (req, res, next) => {
 
 exports.getAllGems = (req, res, next) => {
   Gem.find()
-    .then(gems => res.status(200).json({ gemsList: gems }))
+    .then(gemsList => res.status(200).json({ gemsList }))
     .catch(error => res.status(400).json({ error }))
 }
 
 exports.getOneGem = (req, res, next) => {
   Gem.findOne({ _id: req.params.id })
-  .then((gem) => res.status(200).json({ gem: gem }))
+  .then((gem) => res.status(200).json(gem))
     .catch(error => res.status(500).json({ error }))
 }
 

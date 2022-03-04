@@ -15,13 +15,13 @@ exports.createItem = (req, res, next) => {
 
 exports.getAllItems = (req, res, next) => {
   Item.find()
-    .then(items => res.status(200).json({ itemsList: items }))
+    .then(itemsList => res.status(200).json({ itemsList }))
     .catch(error => res.status(400).json({ error }))
 }
 
 exports.getOneItem = (req, res, next) => {
   Item.findOne({ _id: req.params.id })
-    .then((item) => res.status(200).json({ item: item }))
+    .then((item) => res.status(200).json(item))
   .catch(error=> res.status(500).json({error}))
 }
 
