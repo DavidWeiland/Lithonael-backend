@@ -15,7 +15,7 @@ exports.createGem = (req, res, next) => {
 
 exports.getAllGems = (req, res, next) => {
   Gem.find()
-    .then(gemsList => res.status(200).json({ gemsList }))
+    .then(gems => res.status(200).json(gems))
     .catch(error => res.status(400).json({ error }))
 }
 
@@ -36,7 +36,12 @@ exports.modifyOneGem = (req, res, next) => {
         const filename = gem.image.split('/images/')[ 1 ]
         fs.unlink(`images/${filename}`, () => {
           Gem.updateOne({ _id: req.params.id }, { ...gemObject, _id: req.params.id })
-            .then(() => res.status(200).json({ message: 'Gem modified !' }))
+            .then(() => {
+              //res.status(200).json({ message: 'Gem modified !' })
+              Gem.findOne({ _id: req.params.id })
+                .then(gem => res.status(200).json(gem))
+                .catch(error => res.status(500).json({ error }))
+            })
             .catch(error => res.status(400).json({ error }))
         })
       })
@@ -44,7 +49,12 @@ exports.modifyOneGem = (req, res, next) => {
   } else {
     const gemObject = { ...req.body }
     Gem.updateOne({ _id: req.params.id },{...gemObject, _id:req.params.id})
-      .then(() => res.status(200).json({ message: 'Gem modified !' }))
+      .then(() => {
+        //res.status(200).json({ message: 'Gem modified !' })
+        Gem.findOne({ _id: req.params.id })
+          .then(gem => res.status(200).json(gem))
+          .catch(error => res.status(500).json({ error }))
+      })
       .catch(error => res.status(400).json({ error }))
   }
 }

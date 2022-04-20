@@ -15,7 +15,7 @@ exports.createItem = (req, res, next) => {
 
 exports.getAllItems = (req, res, next) => {
   Item.find()
-    .then(itemsList => res.status(200).json({ itemsList }))
+    .then(items => res.status(200).json(items))
     .catch(error => res.status(400).json({ error }))
 }
 
